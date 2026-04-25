@@ -1,17 +1,11 @@
 let squareArea =document.querySelector("#squarearea");
 //let squareArea =document.getElementById("squarearea");
 let squareCounter = parseInt(Math.random()*21)+30; //30-50
-//make some variable for a big z index e.g. 1000
-for (let i=0; i<squareCounter; i++){
-    //make square
-    let square = document.createElement("div");
-    square.className = "square";
-    square.style.left = parseInt(Math.random()*650)+"px";
-    square.style.top = parseInt(Math.random()*250)+"px";
-    square.style.backgroundColor = getRandomColor();
-    //put onclick and func(this)
-    //put it on screen
-    squareArea.append(square);
+let bigZ = 1000;
+window.onload = function(){
+    for (let i=0; i<squareCounter; i++){
+        addSquare(); // 3) updated onload to use addSquare()
+    }
 }
 
 function getRandomColor(){
@@ -24,17 +18,27 @@ function getRandomColor(){
     //return the color string
     return color;
 }
-//make a func to add 1 square
-//make sure that I set as onclick
+function addSquare(){
+    let square = document.createElement("div");
+    square.className = "square";
+    square.style.left = parseInt(Math.random()*650)+"px";
+    square.style.top = parseInt(Math.random()*250)+"px";
+    square.style.backgroundColor = getRandomColor();
+    square.style.width = parseInt(Math.random()*40)+20+"px";  // 5) random size
+    square.style.height = square.style.width;
+    square.onclick = function(){ handleClick(this); }; // 4) onclick behavior
+    squareArea.append(square);
+}
+function handleClick(sq){
+    if(parseInt(sq.style.zIndex) >= bigZ){
+        sq.remove();
+    } else {
+        bigZ++;
+        sq.style.zIndex = bigZ;
+    }
+}
 
-//make a func that changes color of all squares
-//make sure button calls it
 function changeColors(){
-    //make an array
-    let allSquares = document.querySelectorAll(".square");
-    //for of loop or reg for loop with index
-    //change the color
-    //1-3 lines of code 
-    
-
+    let allSquares = Array.from(document.querySelectorAll(".square"));
+    allSquares.forEach(sq => sq.style.backgroundColor = getRandomColor());
 }
