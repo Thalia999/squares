@@ -24,7 +24,7 @@ function addSquare(){
     square.style.left = parseInt(Math.random()*650)+"px";
     square.style.top = parseInt(Math.random()*250)+"px";
     square.style.backgroundColor = getRandomColor();
-    square.style.width = parseInt(Math.random()*40)+20+"px";  // 5) random size
+    square.style.width = parseInt(Math.random()*11)+45+"px";  // 5) random size
     square.style.height = square.style.width;
     square.onclick = function(){ handleClick(this); }; // 4) onclick behavior
     squareArea.append(square);
