@@ -1,5 +1,4 @@
 let squareArea =document.querySelector("#squarearea");
-//let squareArea =document.getElementById("squarearea");
 let squareCounter = parseInt(Math.random()*21)+30; //30-50
 let bigZ = 1000;
 window.onload = function(){
